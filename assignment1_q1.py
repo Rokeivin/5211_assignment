@@ -2,11 +2,11 @@ import numpy as np
 import math
 
 
-def down_out_call(s0, r, vol, b, k, T, m, n, seed=None):
+def down_out_call(s0, r, vol, b, k, t, m, n, seed=None):
     m = int(m)
     n = int(n)
     price_paths = np.zeros((m + 1, n))
-    dt = T / m
+    dt = t / m
     if seed:
         rng = np.random.default_rng(seed)
     else:
@@ -22,7 +22,7 @@ def down_out_call(s0, r, vol, b, k, T, m, n, seed=None):
     else:
         pay_off[np.logical_not(if_out)] = 0
         pay_off[pay_off < 0] = 0
-    return math.exp(-r*T) * np.sum(pay_off)/n, np.std(pay_off)/math.sqrt(n)
+    return math.exp(-r * t) * np.sum(pay_off) / n, np.std(pay_off) / math.sqrt(n)
 
 
 if __name__ == "__main__":
