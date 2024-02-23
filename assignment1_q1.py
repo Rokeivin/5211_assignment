@@ -13,7 +13,7 @@ def down_out_call(s0, r, vol, b, k, t, m, n, seed=None):
         rng = np.random.default_rng()
     random_matrix = rng.normal(0, 1, (m, n))
     price_paths[0, :] = math.log(s0)
-    price_paths[1:, :] = (r - 0.5 * vol ** 2) * dt + vol * random_matrix
+    price_paths[1:, :] = (r - 0.5 * vol ** 2) * dt + vol * random_matrix * math.sqrt(dt)
     price_paths = np.exp(np.cumsum(price_paths, axis=0))
     if_out = np.sum(price_paths[1:, :] >= b, axis=0) > 0
     pay_off = price_paths[-1, :] - k
