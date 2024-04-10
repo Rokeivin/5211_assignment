@@ -26,9 +26,13 @@ def cross_entropy(_n, _b, _N, seed=None):
     theta2 = np.sum(h_x * random_matrix[1, :]) / np.sum(h_x)
     theta3 = np.sum(h_x * random_matrix[2, :]) / np.sum(h_x)
     random_matrix_y = np.zeros((3, _n))
+    if seed:
+        rng = np.random.default_rng(seed)
+    else:
+        rng = np.random.default_rng()
     random_matrix_y[0, :] = rng.normal(theta1, 1, (1, _n))
-    random_matrix_y[0, :] = rng.normal(theta2, 1, (1, _n))
-    random_matrix_y[0, :] = rng.normal(theta3, 1, (1, _n))
+    random_matrix_y[1, :] = rng.normal(theta2, 1, (1, _n))
+    random_matrix_y[2, :] = rng.normal(theta3, 1, (1, _n))
     h_y = np.minimum(random_matrix_y[0, :] + random_matrix_y[1, :],
                      2 * random_matrix_y[2, :] + random_matrix_y[1, :] + 1) > _b
     h = h_y * np.exp((theta1**2+theta2**2+theta3**2)/2 -
