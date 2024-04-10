@@ -14,12 +14,12 @@ def plain_mc(_n, _b, seed=None):
     return np.mean(bool_matrix), np.std(bool_matrix) / np.sqrt(_n)
 
 
-def cross_entropy(_n, _b, _N, seed=None):
+def cross_entropy(_n, _b, _m, seed=None):
     if seed:
         rng = np.random.default_rng(seed)
     else:
         rng = np.random.default_rng()
-    random_matrix = rng.normal(0, 1, (3, _N))
+    random_matrix = rng.normal(0, 1, (3, _m))
     h_x = np.minimum(random_matrix[0, :] + random_matrix[1, :],
                      2 * random_matrix[2, :] + random_matrix[1, :] + 1) > _b
     theta1 = np.sum(h_x * random_matrix[0, :])/np.sum(h_x)
@@ -41,11 +41,15 @@ def cross_entropy(_n, _b, _N, seed=None):
 
 
 if __name__ == "__main__":
-    n = 10000
-    N = 2000
-    for b in [1, 2, 3]:
-        plain_mu, plain_variance = plain_mc(n, b)
-        print(f"with b = {b} estimation from plain MC is", plain_mu, "std  is", plain_variance)
-    for b in [1, 2, 3]:
+    n = 100000
+    N = 200000
+    # for b in [1, 2, 3]:
+    #     plain_mu, plain_variance = plain_mc(n, b)
+    #     print(f"with b = {b} estimation from plain MC is", plain_mu, "std  is", plain_variance)
+    # for b in [1, 2, 3]:
+    #     ce_mu, ce_variance = cross_entropy(n, b, N)
+    #     print(f"with parameter {b} estimation from cross-entropy MC is", ce_mu, "std  is", ce_variance)
+
+    for b in [5, ]:
         ce_mu, ce_variance = cross_entropy(n, b, N)
         print(f"with parameter {b} estimation from cross-entropy MC is", ce_mu, "std  is", ce_variance)
