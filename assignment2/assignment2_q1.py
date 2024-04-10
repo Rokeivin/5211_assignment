@@ -32,6 +32,6 @@ if __name__ == "__main__":
     mu_plain, variance_plain = plain_mc(a, N)
     mu_mode, variance_mode = mode_matching(a, N)
     print("estimation from plain MC is", mu_plain)
-    print("variance from plain MC is", variance_plain)
+    print("std from plain MC is", variance_plain)
     print("estimation from mode matching is", mu_mode)
-    print("variance from mode matching is", variance_mode)
+    print("std from mode matching is", variance_mode)
