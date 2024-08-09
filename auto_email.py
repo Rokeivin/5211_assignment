@@ -131,8 +131,8 @@ def send_weekly_email(user, password, to_addrs):
     server.quit()
 
 
-my_user = 'kysec_otc'
-my_password = 'JPDjC34gBdImqpTU'   # 定期更新：安全设置-客户端安全登录
+my_user = ''
+my_password = ''   # 定期更新：安全设置-客户端安全登录
 # 在这里填写每个邮箱需要接收的信息，以下仅为测试用
 # ! ! TODO: 这里需要根据实际邮箱和对应产品（收件人；产品；抄送人）
 daily_to_addrs = {'abama01@abmzcgl.com,otct@abmzcgl.com,jianghw@abmzcgl.com,yywb@cmschina.com.cn': [['阿巴马智选尊享1号'], []],
